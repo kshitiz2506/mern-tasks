@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 25</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+       
+        #train {
+            width: 200px; 
+            position: relative;
+            transition: left 2s linear;
+        }
+
+        
+        #textAboveButtons {
+            color: darkblue;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold; 
+        }
+
+       
+        .custom-button {
+            width: 100px; 
+            color: black;
+            background-color: white;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+            border: none; 
+        }
+    </style>
+</head>
+<body class="text-center d-flex flex-column align-items-center justify-content-center vh-100">
+    
+    <img id="train" src="utilities/train_img.png" alt="Train" class="mb-4" />
+
+   
+    <h3 id="textAboveButtons" class="mb-3">Click the following buttons to handle the animation</h3>
+
+    
+    <div class="d-flex">
+        <button id="startButton" class="btn btn-primary custom-button mr-2">Start</button>
+        <button id="stopButton" class="btn btn-danger custom-button">Stop</button>
+    </div>
+
+    <script>
+        const train = document.getElementById('train');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        let animationInterval;
+
+        startButton.addEventListener('click', () => {
+            moveTrain();
+            animationInterval = setInterval(moveTrain, 2000); 
+        });
+
+        stopButton.addEventListener('click', () => {
+            clearInterval(animationInterval); 
+        });
+
+        function moveTrain() {
+           
+            const currentLeft = parseInt(getComputedStyle(train).left, 10);
+            const newPosition = currentLeft + 100; 
+
+            
+            train.style.left = newPosition + 'px';
+        }
+    </script>
+</body>
+</html>
